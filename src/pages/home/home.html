@@ -1,17 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      Home
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <form (ngSubmit)="save()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Nome do Aluno</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name" name="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Localização</ion-label>
+        <ion-card>
+
+          <ion-card-content #map id="map"></ion-card-content>
+
+        </ion-card>
+        <ion-input type="text" [(ngModel)]="user.localization" name="localization"></ion-input>
+      </ion-item>
+
+      <ion-item *ngFor="let day of days">
+        <ion-label>{{day.title}}</ion-label>
+        <ion-checkbox [(ngModel)]="day.checked" name="checked" color="primary"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Horário</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="user.classHour" name="classHour"></ion-datetime>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+
 </ion-content>
